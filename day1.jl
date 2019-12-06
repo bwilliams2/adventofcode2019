@@ -1,7 +1,7 @@
 using DelimitedFiles
 weights = readdlm("data/day1input.txt", '\t', Int, '\n')
 
-fuel = (x -> floor(x/3) - 2).(s) 
+fuel = (x -> floor(x/3) - 2).(weights) 
 println("The fuel required for the modules is ", sum(fuel))
 
 function fuelcalc(x, currSum)
