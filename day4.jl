@@ -3,10 +3,10 @@ using InvertedIndices
 valid_codes = []
 code_range = collect(165432:707912)
 for code in code_range
-    values = (x -> parse(Int64, x)).(split(string(code),""))
+    values = reverse(digits(code))
     shifted = circshift(values, 1)
     consect = any(values .== shifted)
-    decrease = all((values - shifted)[Not(1)] .>= 0) 
+    decrease = all((values - shifted)[Not(1)] .>= 0)
     if consect && decrease
         append!(valid_codes, code)
     end
@@ -16,7 +16,7 @@ print("\n")
 
 valid_valid_codes = []
 for code in valid_codes
-    values = (x -> parse(Int64, x)).(split(string(code),""))
+    values = reverse(digits(code))
     shifted = circshift(values, 1)
     rev_shifted = circshift(values, -1)
     f = findall((x -> x == 0), values - shifted)
