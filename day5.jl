@@ -31,7 +31,6 @@ function ProcessCode(pos, prog)
     code = reverse(digits(prog[pos]))
     zero_len = 5 - length(code)
     code = vcat(zeros(Int64, zero_len), code)
-    println(code)
     values = []
     for (n, i) in enumerate([code[3], code[2]])
         if i == 0
@@ -75,10 +74,6 @@ function ExecuteProgram(prog)
         codes = reverse(digits(prog[pos]))
         opcode = codes[length(codes)]
 
-        println("Process code $opcode")
-        println(codes)
-        println(prog[pos])
-        println(pos)
         if opcode == 3
             d = parse(Int64, Input())
             if length(codes) > 1 && codes[1] == 1
